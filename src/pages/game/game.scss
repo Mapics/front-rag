@@ -1,0 +1,106 @@
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh;
+    min-height: 90vh;
+    width: 100%;
+
+    .gameDetails {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50vh;
+        width: auto;
+        gap: 2vh;
+
+        picture {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1vh;
+            border: var(--border);
+            overflow: hidden;
+            
+            img {
+                // width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+                cursor: pointer;
+                
+                &:hover {
+                    transform: scale(1.1);
+                    // box-shadow: 0 0 10vh var(--black);
+                }
+            }
+        }
+        
+        .gameInfo {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            width: 40%;
+            color: var(--white);
+            background-color: var(--dark-black);
+            border-radius: 1vh;
+            padding: 3vh;
+            border: var(--border);
+
+            .title {
+                font-size: 4vh;
+                font-weight: bold;
+                margin-bottom: 1vh;
+            }
+
+            .price {
+                font-size: 2vh;
+                font-weight: bold;
+                margin-bottom: 1vh;
+            }
+
+            .type {
+                font-size: 0.8vw;
+                width: fit-content;
+                color: var(--white);
+                background-color: var(--light-grey);
+                padding: 0.3vh 0.8vh;
+                border-radius: 0.6vh;
+                border: var(--border);
+            }
+
+            .pc {
+                background-color: #ff7f0f;
+                border-color: #d56f0f;
+            }
+
+            .xbox {
+                background-color: #46d671;
+                border-color: #38af5c;
+            }
+
+            .ps4 {
+                background-color: #4f9bff;
+                border-color: #3a7fc2;
+            }
+
+            .addToCart {
+                height: 5vh;
+                width: 100%;
+                color: var(--white);
+                font-size: 1.6vh;
+                background-color: var(--green);
+                border-radius: 1vh;
+                border: var(--border-green);
+                transition: all 0.3s ease;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--dark-green);
+                }
+            }
+        }
+    }
+}

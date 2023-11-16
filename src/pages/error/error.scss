@@ -1,0 +1,25 @@
+.error {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh;
+    min-height: 90vh;
+    width: 100%;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            color: var(--white);
+            font-size: 5vh;
+        }
+
+        p {
+            color: var(--white);
+            font-size: 2vh;
+        }
+    }
+}

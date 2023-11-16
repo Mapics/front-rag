@@ -1,0 +1,113 @@
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    width: 100%;
+
+    .containerRegister {
+        width: 45vh;
+        background-color: var(--white);
+        padding: 3vh;
+        border-radius: 1vh;
+        border: var(--border);
+
+        form {
+            .title {
+                font-size: 3vh;
+                margin-bottom: 0.5vh;
+                color: var(--blue);
+            }
+
+            p {
+                color: var(--grey);
+                font-size: 1.6vh;
+                margin-bottom: 3vh;
+            }
+
+            label {
+                font-size: 1.7vh;
+            }
+
+            input {
+                height: 5vh;
+                width: 100%;
+                padding: 0 1.5vh;
+                border: var(--border);
+                border-radius: 1vh;
+                font-size: 1.6vh;
+                margin: 0.8vh 0 2vh 0;
+                outline: none;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    border-color: var(--grey);
+                }
+            }
+
+            button {
+                height: 5vh;
+                width: 100%;
+                border: var(--border);
+                border-radius: 1vh;
+                font-size: 1.6vh;
+                outline: none;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                user-select: none;
+
+                &:hover {
+                    color: var(--white);
+                    background-color: var(--blue);
+                    border-color: var(--border-blue);
+                }
+            }
+
+            .containerPassword {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                gap: 2vh;
+
+                input[type=password] {
+                    width: 80%;
+                }
+                
+                .passwordVisibility {
+                    width: 20%;
+                    margin: 0.5vh 0 2vh 0;
+                    background-image: url(../../assets/icon/view.svg);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 2vh;
+                }
+            }
+        }
+
+        .haveAccount {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 3vh;
+
+            p {
+                font-size: 1.5vh; 
+            }
+
+            a {
+                color: var(--blue);
+                font-size: 1.5vh;
+                font-weight: 700;
+                text-decoration: none;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: var(--border-blue);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
