@@ -39,12 +39,10 @@ export default function Header() {
                 <Link to="/library">Mes jeux</Link>
               </li>
               <li>
-                <Link to="/cart">Panier</Link>
+                <Link className="caddie" to="/cart"></Link>
               </li>
               <li>
-                <Link className="disconnect" to="/" onClick={handleLogout}>
-                  Déconnexion
-                </Link>
+                <Link className="disconnect" to="/" onClick={handleLogout}></Link>
               </li>
             </>
           )}

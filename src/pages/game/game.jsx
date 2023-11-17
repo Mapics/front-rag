@@ -8,6 +8,7 @@ export default function Game() {
   const [gameDetails, setGameDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
+  const [addButton, setAddButton] = useState("Louer");
 
   useEffect(() => {
     const fetchGameDetails = async () => {
@@ -16,6 +17,7 @@ export default function Game() {
         setGameDetails(response.data[0]);
       } catch (error) {
         console.error('Erreur lors de la récupération des détails du jeu :', error);
+        // Afficher un message à l'utilisateur en cas d'erreur
       } finally {
         setLoading(false);
       }
@@ -24,10 +26,6 @@ export default function Game() {
     fetchGameDetails();
   }, [id]);
 
-  const addToCart = () => {
-    console.log('Ajouté au panier');
-  };
-
   function getFormattedDate() {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -35,6 +33,31 @@ export default function Game() {
     const yyyy = today.getFullYear();
     return `${yyyy}-${mm}-${dd}`;
   }
+
+  const addToCart = () => {
+    const cartItem = {
+      id: gameDetails.id,
+      titre: gameDetails.titre,
+      images: gameDetails.images,
+      prix: gameDetails.prix,
+      dateStart: currentDate,
+      // dateEnd: /* récupérer la date de fin ici */,
+    };
+  
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];  
+    const updatedCart = [...existingCart, cartItem];
+  
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    setAddButton('✅');
+
+    // Désactiver le bouton pendant 3 secondes
+    setTimeout(() => {
+      setAddButton('Louer');
+    }, 3000);
+  
+    console.log('Ajouté au panier');
+  };
 
   return (
     <main className="game">
@@ -68,10 +91,11 @@ export default function Game() {
                   name="dateEnd"
                   id="dateEnd"
                   placeholder="Entrez la date de fin de location"
+                  /* Ajouter la gestion de la date de fin ici */
                 />
               </div>
-              <button className="addToCart" onClick={addToCart}>
-                Louer
+              <button className="addToCart" onClick={addToCart} disabled={addButton === '✅'}>
+                <span>{addButton}</span>
               </button>
             </div>
           </picture>

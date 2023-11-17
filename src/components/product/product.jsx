@@ -11,7 +11,7 @@ export default function Product(props) {
         <picture>
           <img className="productImage" src={props.image} alt={props.name} />
         </picture>
-        <div className="productInfo">+
+        <div className="productInfo">
           <h5 className="productName">{props.titre}</h5>
           <p className="productPrice">{props.price} €</p>
         </div>

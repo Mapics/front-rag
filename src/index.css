@@ -15,7 +15,7 @@
   --border-red: #d12f2f;
   --green: #46d671;
   --dark-green: #38b35d;
-  --border-green: 0.3vh solid #38af5c;
+  --border-green: 0.3vh solid var(--dark-green);
   --border: 0.3vh solid var(--dark-grey);
 }
 
