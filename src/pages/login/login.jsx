@@ -1,10 +1,15 @@
+import Cookies from 'js-cookie';
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./login.scss";
+
+
+
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -28,6 +33,9 @@ export default function Login() {
 
       if (reponse.ok) {
         console.log("Connexion réussie");
+        Cookies.set('token', 'clé_secrète', { sameSite: 'Strict' });
+        navigate("/")
+        window.location.reload();
       } else {
         console.error("Erreur lors de la connexion");
       }
@@ -38,6 +46,7 @@ export default function Login() {
       setPassword("");
     }
   };
+
   return (
     <div className="login">
       <div className="containerLogin">

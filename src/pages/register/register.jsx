@@ -11,7 +11,6 @@ export default function Register() {
   };
 
   const [username, setUsername] = useState("");
-  const [userfirstname, setUserfirstname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -29,7 +28,6 @@ export default function Register() {
           email: email,
           password: password,
           username: username,
-          userfirstname: userfirstname,
         }),
       });
 
@@ -50,24 +48,14 @@ export default function Register() {
         <form onSubmit={handleSignup}>
           <h2 className="title">Inscription</h2>
           <p>Créez votre compte</p>
-          <label htmlFor="name">Nom</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Entrez votre nom"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <label htmlFor="firstname">Prénom</label>
+          <label htmlFor="firstname">Username</label>
           <input
             type="text"
             name="firstname"
             id="firstname"
             placeholder="Entrez votre prénom"
-            value={userfirstname}
-            onChange={(e) => setUserfirstname(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <label htmlFor="email">Email</label>
