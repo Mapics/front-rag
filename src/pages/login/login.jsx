@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.scss";
+
+
+const cookie = require('cookie');
+
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,6 +32,8 @@ export default function Login() {
 
       if (reponse.ok) {
         console.log("Connexion réussie");
+        cookie.set('token', 'valeur_du_token', { secure: true, sameSite: 'Strict' });
+        useNavigate.use("/");
       } else {
         console.error("Erreur lors de la connexion");
       }
