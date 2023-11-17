@@ -7,6 +7,7 @@ import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Game from './pages/game/game';
 import Cart from './pages/cart/cart';
+import Library from './pages/library/library';
 import Error from './pages/error/error';
 import Footer from './components/footer/footer';
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/library" element={<Library />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

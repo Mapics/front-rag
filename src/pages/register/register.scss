@@ -4,35 +4,42 @@
     align-items: center;
     min-height: 90vh;
     width: 100%;
+    background-image: url(https://wallpapers.com/images/featured/minecraft-s2kxfahyg30sob8q.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
     .containerRegister {
         width: 45vh;
-        background-color: var(--white);
+        background-color: var(--dark-black);
         padding: 3vh;
         border-radius: 1vh;
         border: var(--border);
 
         form {
             .title {
+                color: var(--blue);
                 font-size: 3vh;
                 margin-bottom: 0.5vh;
-                color: var(--blue);
             }
 
             p {
                 color: var(--grey);
                 font-size: 1.6vh;
-                margin-bottom: 3vh;
+                margin-bottom: 2vh;
             }
 
             label {
+                color: var(--white);
                 font-size: 1.7vh;
+                font-weight: 400;
             }
 
             input {
                 height: 5vh;
                 width: 100%;
                 padding: 0 1.5vh;
+                background-color: var(--light-black);
                 border: var(--border);
                 border-radius: 1vh;
                 font-size: 1.6vh;
@@ -48,7 +55,9 @@
             button {
                 height: 5vh;
                 width: 100%;
-                border: var(--border);
+                color: var(--white);
+                background-color: var(--blue);
+                border-color: var(--border-blue);
                 border-radius: 1vh;
                 font-size: 1.6vh;
                 outline: none;
@@ -57,9 +66,7 @@
                 user-select: none;
 
                 &:hover {
-                    color: var(--white);
-                    background-color: var(--blue);
-                    border-color: var(--border-blue);
+                    background-color: var(--border-blue);
                 }
             }
 
@@ -93,7 +100,8 @@
             margin-top: 3vh;
 
             p {
-                font-size: 1.5vh; 
+                color: var(--white);
+                font-size: 1.5vh;
             }
 
             a {

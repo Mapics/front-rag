@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header>
-      <Link className="logo" to="/">RAG</Link>
+      <Link className="logo" to="/">RAG.com</Link>
       <nav>
         <ul>
           {/* Si l'utilisateur n'est pas connecté */}
@@ -21,6 +21,9 @@ export default function Header() {
             <Link to="/register">Inscription</Link>
           </li>
           {/* Si l'utilisateur est connecté */}
+          <li>
+            <Link to="/library">Mes jeux</Link>
+          </li>
           <li>
             <Link to="/cart">Panier</Link>
           </li>

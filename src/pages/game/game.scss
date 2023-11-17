@@ -1,21 +1,20 @@
 .game {
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 3vh;
     min-height: 90vh;
     width: 100%;
 
     .gameDetails {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        height: 50vh;
-        width: auto;
         gap: 2vh;
 
         picture {
-            height: 100%;
+            position: relative;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,49 +23,27 @@
             overflow: hidden;
             
             img {
-                // width: 100%;
                 height: 100%;
+                width: 100%;    
                 object-fit: cover;
-                transition: transform 0.3s ease;
+                transition: transform 0.5s ease;
                 cursor: pointer;
                 
                 &:hover {
-                    transform: scale(1.1);
+                    transform: scale(1.04);
                     // box-shadow: 0 0 10vh var(--black);
                 }
             }
-        }
-        
-        .gameInfo {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            width: 40%;
-            color: var(--white);
-            background-color: var(--dark-black);
-            border-radius: 1vh;
-            padding: 3vh;
-            border: var(--border);
-
-            .title {
-                font-size: 4vh;
-                font-weight: bold;
-                margin-bottom: 1vh;
-            }
-
-            .price {
-                font-size: 2vh;
-                font-weight: bold;
-                margin-bottom: 1vh;
-            }
 
             .type {
-                font-size: 0.8vw;
+                position: absolute;
+                top: 2vh;
+                right: 2vh;
+                font-size: 1.8vh;
                 width: fit-content;
-                color: var(--white);
+                color: var(--white);    
                 background-color: var(--light-grey);
-                padding: 0.3vh 0.8vh;
+                padding: 0.5vh 1vh;
                 border-radius: 0.6vh;
                 border: var(--border);
             }
@@ -86,21 +63,139 @@
                 border-color: #3a7fc2;
             }
 
-            .addToCart {
-                height: 5vh;
-                width: 100%;
+            .gameInfo {
+                position: fixed;
+                right: 10vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 50%;
+                width: 40vh;
                 color: var(--white);
-                font-size: 1.6vh;
-                background-color: var(--green);
+                background-color: var(--dark-black);
                 border-radius: 1vh;
-                border: var(--border-green);
-                transition: all 0.3s ease;
-                cursor: pointer;
+                padding: 3vh;
+                border: var(--border);
+    
+                .title {
+                    font-size: 4vh;
+                    font-weight: bold;
+                    margin-bottom: 1vh;
+                }
+    
+                .price {
+                    font-size: 2vh;
+                    font-weight: bold;
+                    width: fit-content;
+                    padding: 0.5vh 1vh;
+                    background-color: var(--blue);
+                    border-radius: 0.6vh;
+                    border: 0.3vh solid var(--border-blue);
+                    margin-bottom: 1vh;
+                }
 
-                &:hover {
-                    background-color: var(--dark-green);
+                label {
+                    font-size: 1.8vh;
+                }
+    
+                .date {
+                    width: 100%;
+                    font-size: 1.8vh;
+                    color: var(--white);
+                    background-color: var(--light-grey);
+                    padding: 0.5vh 1vh;
+                    border: var(--border);
+                    border-radius: 0.6vh;
+                    margin-top: 0.5vh;
+                    margin-bottom: 1vh;
+                    
+                    &:focus {
+                        outline: 0.3vh solid var(--grey);
+                    }
+                }
+    
+                .addToCart {
+                    height: 5vh;
+                    width: 100%;
+                    color: var(--white);
+                    font-size: 1.6vh;
+                    background-color: var(--blue);
+                    border: 0.3vh solid var(--border-blue);
+                    border-radius: 1vh;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+    
+                    &:hover {
+                        background-color: var(--border-blue);
+                    }
                 }
             }
         }
+
+        .description {
+            height: 10vh;
+            width: 100%;
+            color: var(--white);
+            background-color: var(--dark-black);
+            border: var(--border);
+            border-radius: 1vh;
+            padding: 2vh;
+
+            .titleDescription {
+                font-size: 2.5vh;
+                font-weight: bold;
+                line-height: 1;
+                margin-bottom: 0.5vh;
+            }
+        }
+        
+        // .comment {
+        //     width: 100%;
+        //     color: var(--white);
+        //     background-color: var(--dark-black);
+        //     border: var(--border);
+        //     border-radius: 1vh;
+        //     padding: 2vh;
+            
+        //     .titleComment {
+        //         font-size: 2.5vh;
+        //         font-weight: bold;
+        //         line-height: 1;
+        //         margin-bottom: 1vh;
+        //     }
+
+        //     textarea {
+        //         width: 100%;
+        //         padding: 1vh;
+        //         font-size: 1.8vh;
+        //         color: var(--white);
+        //         background-color: var(--light-grey);
+        //         border: var(--border);
+        //         border-radius: 0.6vh;
+        //         resize: none;
+                
+        //         &:focus {
+        //             outline: 0.3vh solid var(--blue);
+        //         }
+        //     }
+
+        //     .submitComment {
+        //         float: right;
+        //         height: 5vh;
+        //         width: 8%;
+        //         color: var(--white);
+        //         font-size: 1.6vh;
+        //         background-color: var(--green);
+        //         border-radius: 1vh;
+        //         border: var(--border-green);
+        //         transition: all 0.3s ease;
+        //         cursor: pointer;
+        //         margin-top: 1vh;
+
+        //         &:hover {
+        //             background-color: var(--dark-green);
+        //         }
+        //     }
+        // }
     }
 }

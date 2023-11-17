@@ -1,0 +1,69 @@
+.library {
+    display: flex;
+    padding: 3vh;
+    min-height: 90vh;
+    width: 100%;
+
+    .titleLibrary {
+        color: var(--white);
+        font-size: 3vh;
+        margin-bottom: 2vh;
+    }
+
+    .gameInfo {
+        position: absolute;
+        right: 10vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50%;
+        width: 40vh;
+        color: var(--white);
+        background-color: var(--dark-black);
+        border-radius: 1vh;
+        padding: 3vh;
+        border: var(--border);
+
+        .title {
+            font-size: 4vh;
+            font-weight: bold;
+            margin-bottom: 1vh;
+        }
+
+        .price {
+            font-size: 2vh;
+            font-weight: bold;
+            margin-bottom: 1vh;
+        }
+
+        .dateEnd {
+            width: 100%;
+            font-size: 1.8vh;
+            color: var(--white);
+            background-color: var(--light-grey);
+            padding: 0.5vh 1vh;
+            border: var(--border);
+            border-radius: 0.6vh;
+            
+            &:focus {
+                outline: 0.3vh solid var(--grey);
+            }
+        }
+
+        .addToCart {
+            height: 5vh;
+            width: 100%;
+            color: var(--white);
+            font-size: 1.6vh;
+            background-color: var(--blue);
+            border-radius: 1vh;
+            border: var(--border-blue);
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--dark-green);
+            }
+        }
+    }
+}

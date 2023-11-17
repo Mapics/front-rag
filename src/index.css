@@ -20,8 +20,8 @@
 }
 
 ::selection {
-  color: var(--black);
-  background-color: #50505025;
+  color: var(--white);
+  background-color: var(--blue);
 }
 
 body {
