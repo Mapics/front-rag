@@ -29,10 +29,14 @@ export default function Header() {
         <ul>
           {/* Si l'utilisateur n'est pas connecté */}
           {!isConnected ? (
-            <li>
-              <Link to="/login">Connexion</Link>
-              <Link to="/register">Inscription</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/login">Connexion</Link>
+              </li>
+              <li>
+                <Link to="/register">Inscription</Link>
+              </li>
+            </>
           ) : (
             <>
               <li>
@@ -42,7 +46,11 @@ export default function Header() {
                 <Link className="caddie" to="/cart"></Link>
               </li>
               <li>
-                <Link className="disconnect" to="/" onClick={handleLogout}></Link>
+                <Link
+                  className="disconnect"
+                  to="/"
+                  onClick={handleLogout}
+                ></Link>
               </li>
             </>
           )}
