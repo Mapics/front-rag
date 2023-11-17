@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./header.scss";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 export default function Header() {
   const [isConnected, setIsConnected] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Vérification de la présence du cookie ici
@@ -21,7 +19,6 @@ export default function Header() {
     Cookies.remove('token');
     setIsConnected(false)
   };
-
 
   return (
     <header>
