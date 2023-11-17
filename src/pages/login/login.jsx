@@ -50,13 +50,6 @@ export default function Login() {
         <form onSubmit={handleLogin}>
           <h2 className="title">Login</h2>
           <p>Connectez-vous à votre compte</p>
-          <label htmlFor="username">Nom d'utilisateur</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Entrez votre nom d'utilisateur"
-          />
           <label htmlFor="email">Email</label>
           <input
             type="email"

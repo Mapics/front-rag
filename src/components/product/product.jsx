@@ -7,11 +7,11 @@ export default function Product(props) {
   return (
     <Link to={`/game/${props.id}`} className="product">
       <article key={props.key}>
-        <p className={`platform ${props.plateforme.toLowerCase()}`}>{props.plateforme}</p>
+        <p className={`platform ${props.plateforme}`}>{props.plateforme}</p>
         <picture>
           <img className="productImage" src={props.image} alt={props.name} />
         </picture>
-        <div className="productInfo">+
+        <div className="productInfo">
           <h5 className="productName">{props.titre}</h5>
           <p className="productPrice">{props.price} €</p>
         </div>
