@@ -93,6 +93,12 @@
             }
         }
 
+        .incorrect {
+            color: var(--red);
+            font-size: 1.4vh;
+            margin-top: 1vh;
+        }
+
         .notHaveAccount {
             display: flex;
             justify-content: space-between;

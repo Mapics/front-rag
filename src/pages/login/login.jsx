@@ -6,18 +6,19 @@ import "./login.scss";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [incorrect, setIncorrect] = useState(null); // New state variable for error
   const navigate = useNavigate();
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const reponse = await fetch("http://localhost:8000/login", {
+      const response = await fetch("http://localhost:8000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,16 +29,18 @@ export default function Login() {
         }),
       });
 
-      if (reponse.ok) {
+      if (response.ok) {
         console.log("Connexion réussie");
         Cookies.set('token', 'clé_secrète', { sameSite: 'Strict' });
-        navigate("/")
+        navigate("/");
         window.location.reload();
       } else {
         console.error("Erreur lors de la connexion");
+        setIncorrect("Email ou mot de passe incorrect."); // Set error message
       }
     } catch (err) {
       console.error("Erreur inattendue", err);
+      setIncorrect("Une erreur inattendue s'est produite."); // Set error message
     } finally {
       setEmail("");
       setPassword("");
@@ -49,7 +52,7 @@ export default function Login() {
       <div className="containerLogin">
         <form onSubmit={handleLogin}>
           <h2 className="title">Login</h2>
-          <p>Connectez-vous à votre compte</p>
+          <p>Connectez-vous à votre compte</p>          
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -81,6 +84,7 @@ export default function Login() {
           </div>
           <button type="submit">Se connecter</button>
         </form>
+        {incorrect && <div className="incorrect">{incorrect}</div>} {/* Display error message */}
         <div className="notHaveAccount">
           <p>Vous n'avez pas de compte ?</p>
           <Link to="/register">Inscrivez-vous</Link>
