@@ -30,10 +30,10 @@ export default function Register() {
           username: username,
         }),
       });
-
+      
       if (response.ok) {
         console.log("Inscription réussie");
-        navigate.push("/login"); // Redirige vers la page de connexion après l'inscription
+        navigate("/login"); // Redirige vers la page de connexion après l'inscription
       } else {
         console.error("Erreur lors de l'inscription");
       }
