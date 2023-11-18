@@ -26,6 +26,12 @@ export default function Cart() {
     return cartItems.reduce((total, item) => total + parseFloat(item.prix), 0).toFixed(2);
   };
 
+  const buyCart = () => {
+    alert("Merci pour votre achat !");
+    localStorage.removeItem("cart");
+    setCartItems([]);
+  };
+
   return (
     <main className="cart">
       <div className="cartProducts">
@@ -73,7 +79,7 @@ export default function Cart() {
               <p className="titleTotal">Total</p>
               <p className="totalPrice">{`${calculateTotal()}€`}</p>
             </div>
-            <button className="buy">Payer</button>
+            <button className="buy" onClick={buyCart}>Payer</button>
           </div>
         </div>
       </div>
