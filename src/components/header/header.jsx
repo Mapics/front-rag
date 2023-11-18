@@ -18,6 +18,7 @@ export default function Header() {
     console.log("Deconnection");
     Cookies.remove("token");
     setIsConnected(false);
+    localStorage.clear();
   };
 
   return (
