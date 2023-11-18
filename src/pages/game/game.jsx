@@ -9,7 +9,6 @@ export default function Game() {
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
   const [endDate, setEndDate] = useState(getFormattedDate());
-  const [addButton, setAddButton] = useState("");
   const [commentary, setCommentary] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -85,8 +84,6 @@ export default function Game() {
     // Réinitialiser le message d'erreur
     setErrorMessage("");
 
-    // Le reste du code pour ajouter l'élément au panier
-
     const cartItem = {
       id: gameDetails.id,
       titre: gameDetails.titre,
@@ -100,14 +97,6 @@ export default function Game() {
     const updatedCart = [...existingCart, cartItem];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-    setAddButton("✅");
-
-    // Désactiver le bouton pendant 3 secondes
-    setTimeout(() => {
-      setAddButton("Louer");
-    }, 3000);
-
     console.log("Ajouté au panier");
   };
 
@@ -126,6 +115,8 @@ export default function Game() {
               <div>
                 <h2 className="title">{gameDetails.titre}</h2>
                 <p className="price">{gameDetails.prix} €/jour</p>
+              </div>
+              <div>
                 <label htmlFor="dateStart">Date de début :</label>
                 <input
                   className="date"
@@ -135,7 +126,7 @@ export default function Game() {
                   placeholder="Entrez la date de début de location"
                   value={currentDate}
                   onChange={(e) => setCurrentDate(e.target.value)}
-                />
+                  />
                 <label htmlFor="dateEnd">Date de fin :</label>
                 <input
                   className="date"
@@ -145,8 +136,8 @@ export default function Game() {
                   placeholder="Entrez la date de fin de location"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                />
-                {errorMessage && <p className="errorDate">{errorMessage}</p>}
+                  />
+                  {errorMessage && <p className="errorDate">{errorMessage}</p>}
               </div>
               <div className="buttons">
                 <Link to="/cart">
@@ -157,9 +148,7 @@ export default function Game() {
                 <button
                   className="addToCart"
                   onClick={addToCart}
-                  disabled={addButton === "✅"}
                 >
-                  <span>{addButton}</span>
                 </button>
               </div>
             </div>
@@ -174,12 +163,12 @@ export default function Game() {
               {loading ? (
                 <p>Chargement...</p>
               ) : (
-                commentary.map((comment) =>
+                commentary.map((comment) => (
                   <div className="commentary" key={comment.id}>
                     <p className="userName">{`${comment.username}`}</p>
                     <p className="commentaryContent">{comment.commentaire}</p>
                   </div>
-                )
+                ))
               )}
 
               {commentary.length === 0 && (
