@@ -14,45 +14,54 @@
         flex-wrap: wrap;
         gap: 1vh;
 
-        .formCommentary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--dark-black);
-            margin: 0 1vh;
-            border: var(--border);
-            border-radius: 1vh;
-            padding: 2vh;
-            gap: 1vh;
-        }
+        .gameContainer {
+            width: 48vh; // A RETIRER 
 
-        textarea {
-            padding: 1vh;
-            height: 5vh;
-            width: 50%;
-            color: var(--white);
-            background-color: var(--light-black);
-            border-radius: 0.8vh;
-            border: var(--border);
-            resize: none;
-
-            &:focus {
-                border-color: var(--grey);
+            .formCommentary {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 1vh;
+                border-radius: 1vh;
+                gap: 1vh;
             }
-        } 
+    
+            textarea {
+                padding: 1vh;
+                height: 5vh;
+                width: 90%;
+                color: var(--white);
+                background-color: var(--dark-black);
+                border-radius: 0.8vh;
+                border: var(--border);
+                resize: none;
 
-        input {
-            height: 5vh;
-            aspect-ratio: 1/1;
-            background-color: var(--dark-black);
-            border-radius: 1vh;
-            border: var(--border);
-            outline: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+                &::placeholder {
+                    color: var(--grey);
+                }
 
-            &:focus {
-                border-color: var(--grey);
+                &:focus {
+                    border-color: var(--grey);
+                }
+            } 
+    
+            .submitComment {
+                height: 5vh;
+                aspect-ratio: 1/1;
+                background-color: var(--dark-black);
+                background-image: url("../../assets/icon/check.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 1.5vh;
+                border-radius: 1vh;
+                border: var(--border);
+                outline: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+    
+                &:focus {
+                    border-color: var(--grey);
+                }
             }
         }
     }

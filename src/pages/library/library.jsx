@@ -34,10 +34,10 @@ export default function Library() {
       <div className="games">
         {/* A SUPPRIMER */}
         <div className="gameList">
-          <div>
+          <div className="gameContainer">
             <Product
-              key={1}
-              id={1}
+              key={2}
+              id={2}
               image={
                 "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f"
               }
@@ -46,35 +46,54 @@ export default function Library() {
               plateforme={"PS4"}
               price={"4.99"}
             />
+
             <form className="formCommentary">
               <textarea
                 className="commentaire"
                 id="commentaire"
                 name="commentaire"
-                placeholder="Entrez votre commentaire"
+                placeholder="Un avis sur ce jeu ?"
                 rows="4"
                 cols="50"
               ></textarea>
               <input
                 className="submitComment"
                 type="submit"
-                value="✅"
+                value=""
               ></input>
             </form>
           </div>
+          <div className="gameContainer">
+            <Product
+              key={2}
+              id={2}
+              image={
+                "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f"
+              }
+              titre={"The Witcher 3"}
+              description={"Un jeu de rôle à la troisième personne"}
+              plateforme={"PS4"}
+              price={"4.99"}
+            />
 
-          <Product
-            key={1}
-            id={1}
-            image={
-              "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f"
-            }
-            titre={"The Witcher 3"}
-            description={"Un jeu de rôle à la troisième personne"}
-            plateforme={"PS4"}
-            price={"4.99"}
-          />
-        </div>
+            <form className="formCommentary">
+              <textarea
+                className="commentaire"
+                id="commentaire"
+                name="commentaire"
+                placeholder="Un avis sur ce jeu ?"
+                rows="4"
+                cols="50"
+              ></textarea>
+              <input
+                className="submitComment"
+                type="submit"
+                value=""
+              ></input>
+            </form>
+          </div>
+          
+        </div>  
         {/* A SUPPRIMER */}
 
         {loading ? (
@@ -96,7 +115,6 @@ export default function Library() {
         ) : (
           <p>Aucun jeu en location pour le moment.</p>
         )}
-        {/* <h2 className="titleComment">Commentaires</h2> */}
       </div>
     </main>
   );
