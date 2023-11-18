@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./game.scss"; // Assurez-vous d'ajuster le chemin d'importation en fonction de votre structure de fichiers
 
 export default function Game() {
@@ -9,7 +9,7 @@ export default function Game() {
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
   const [endDate, setEndDate] = useState(getFormattedDate());
-  const [addButton, setAddButton] = useState("Louer");
+  const [addButton, setAddButton] = useState("");
   const [commentary, setCommentary] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -31,10 +31,14 @@ export default function Game() {
 
     const fetchGamesComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/location/comment/${id}`);
+        const response = await axios.get(
+          `http://localhost:8000/location/comment/${id}`
+        );
         const commentData = await Promise.all(
           response.data.map(async (comment) => {
-            const userResponse = await axios.get(`http://localhost:8000/user/${comment.id_user}/username`);
+            const userResponse = await axios.get(
+              `http://localhost:8000/user/${comment.id_user}/username`
+            );
             return {
               ...comment,
               username: userResponse.data[0].username,
@@ -43,7 +47,10 @@ export default function Game() {
         );
         setCommentary(commentData);
       } catch (error) {
-        console.error("Erreur lors de la récupération des commentaires du jeu :", error);
+        console.error(
+          "Erreur lors de la récupération des commentaires du jeu :",
+          error
+        );
         // Afficher un message à l'utilisateur en cas d'erreur
       } finally {
         setLoading(false);
@@ -69,7 +76,9 @@ export default function Game() {
 
     if (endDateValue <= startDate) {
       // Afficher un message d'erreur
-      setErrorMessage("La date de fin doit être postérieure à la date de début");
+      setErrorMessage(
+        "La date de fin doit être postérieure à la date de début"
+      );
       return;
     }
 
@@ -108,11 +117,11 @@ export default function Game() {
         <p>Chargement...</p>
       ) : gameDetails ? (
         <div className="gameDetails">
+          <p className={`type ${gameDetails.plateforme.toLowerCase()}`}>
+            {gameDetails.plateforme}
+          </p>
           <picture>
             <img src={gameDetails.images} alt={gameDetails.titre} />
-            <p className={`type ${gameDetails.plateforme}`}>
-              {gameDetails.plateforme}
-            </p>
             <div className="gameInfo">
               <div>
                 <h2 className="title">{gameDetails.titre}</h2>
@@ -139,13 +148,20 @@ export default function Game() {
                 />
                 {errorMessage && <p className="errorDate">{errorMessage}</p>}
               </div>
-              <button
-                className="addToCart"
-                onClick={addToCart}
-                disabled={addButton === "✅"}
-              >
-                <span>{addButton}</span>
-              </button>
+              <div className="buttons">
+                <Link to="/cart">
+                  <button className="buyNow" onClick={addToCart}>
+                    Louer maintenant
+                  </button>
+                </Link>
+                <button
+                  className="addToCart"
+                  onClick={addToCart}
+                  disabled={addButton === "✅"}
+                >
+                  <span>{addButton}</span>
+                </button>
+              </div>
             </div>
           </picture>
           <div className="description">
@@ -158,14 +174,18 @@ export default function Game() {
               {loading ? (
                 <p>Chargement...</p>
               ) : (
-                commentary.map((comment) => (
-                  comment.commentaire && (
-                    <div className="commentary" key={comment.id}>
-                      <p className="userName">{`${comment.username}`}</p>
-                      <p className="commentaryContent">{comment.commentaire}</p>
-                    </div>
-                  )
-                ))
+                commentary.map((comment) =>
+                  <div className="commentary" key={comment.id}>
+                    <p className="userName">{`${comment.username}`}</p>
+                    <p className="commentaryContent">{comment.commentaire}</p>
+                  </div>
+                )
+              )}
+
+              {commentary.length === 0 && (
+                <p className="emptyCommentary">
+                  Aucun commentaire pour ce jeu.
+                </p>
               )}
             </div>
           </div>

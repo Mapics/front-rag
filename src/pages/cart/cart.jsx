@@ -54,59 +54,69 @@ export default function Cart() {
 
   return (
     <main className="cart">
-      <div className="cartProducts">
-        <h2 className="titleCart">Panier</h2>
-        <div className="cartScroll">
-          <div className="cartContainer">
-            {cartItems.length === 0 && (
-              <p className="emptyCart">Votre panier est vide.</p>
-            )}
-            {cartItems.map((item, index) => (
-              <div className="cartProduct" key={index}>
-                <div className="cartProductInfos">
-                  <img src={item.images} alt={item.titre} />
-                  <div className="cartProductInfo">
-                    <div className="cartProductInfoContainer">
-                      <h5 className="cartProductName">{item.titre}</h5>
-                      <p className="cartProductPrice">{item.prix}€/jour</p>
+      {cartItems.length === 0 ? (
+        <div className="emptyCartContainer">
+          <p className="emptyTotal">Votre panier est vide</p>
+          <button className="emptyCart" onClick={() => navigate("/")}>
+            Retour à l'accueil
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className="cartProducts">
+            <h2 className="titleCart">Panier</h2>
+            <div className="cartScroll">
+              <div className="cartContainer">
+                {cartItems.map((item, index) => (
+                  <div className="cartProduct" key={index}>
+                    <div className="cartProductInfos">
+                      <img src={item.images} alt={item.titre} />
+                      <div className="cartProductInfo">
+                        <div className="cartProductInfoContainer">
+                          <h5 className="cartProductName">{item.titre}</h5>
+                          <p className="cartProductPrice">{`${item.prix}€/jour`}</p>
+                        </div>
+                        <div className="cartProductDateContainer">
+                          <p className="date">
+                            Date de début : {item.dateStart}
+                          </p>
+                          <p className="date">Date de fin : {item.dateEnd}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="cartProductDateContainer">
-                      <p className="date">Date de début : {item.dateStart}</p>
-                      <p className="date">Date de fin : {item.dateEnd}</p>
-                    </div>
+                    <button
+                      className="delete"
+                      onClick={() => removeFromCart(index)}
+                    ></button>
                   </div>
-                </div>
-                <button
-                  className="delete"
-                  onClick={() => removeFromCart(index)}
-                ></button>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="cartTotal">
-        <h2 className="cartTotalTitle">Total</h2>
-        <div className="cartTotalContainer">
-          <div className="cartTotalList">
-            {cartItems.map((item, index) => (
-              <p className="cartTotalProduct">
-                <p className="title">{item.titre}</p>
-                <p className="price">{`${item.prix}€/jour`}</p>
-              </p>
-            ))}
-          </div>
-          <div className="cartTotalPrice">
-            <div className="cartTotalPriceContainer">
-              <p className="titleTotal">Total</p>
-              <p className="totalPrice">{`${calculateTotal()}€`}</p>
             </div>
-            <button className="buy" onClick={buyCart}>
-              Payer
-            </button>
           </div>
-        </div>
-      </div>
+          <div className="cartTotal">
+            <h2 className="cartTotalTitle">Total</h2>
+            <div className="cartTotalContainer">
+              <div className="cartTotalList">
+                {cartItems.map((item, index) => (
+                  <div key={index} className="cartTotalProduct">
+                    <p className="title">{item.titre}</p>
+                    <p className="price">{`${calculateItemTotal(item)}€`}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="cartTotalPrice">
+                <div className="cartTotalPriceContainer">
+                  <p className="titleTotal">Total</p>
+                  <p className="totalPrice">{`${calculateTotal()}€`}</p>
+                </div>
+                <button className="buy" onClick={buyCart}>
+                  Payer
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </main>
   );
 }

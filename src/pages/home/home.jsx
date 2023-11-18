@@ -46,16 +46,6 @@ export default function Home() {
           onChange={handleSearchChange}
           placeholder="Rechercher un jeu"
         />
-        <div className="buttonsFilter">
-          <button className="filterButton active" type="button">Tous</button>
-          <button className="filterButton" type="button">FPS</button>
-          <button className="filterButton" type="button">Action</button>
-          <button className="filterButton" type="button">Aventure</button>
-          <button className="filterButton" type="button">Sport</button>
-          <button className="filterButton" type="button">Course</button>
-          <button className="filterButton" type="button">Combat</button>
-          <button className="filterButton" type="button">RPG</button>
-        </div>
       </div>
       <div className="products">
         {loading ? (

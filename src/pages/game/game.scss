@@ -6,14 +6,42 @@
     width: 100%;
 
     .gameDetails {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 2vh;
 
+        .type {
+            position: absolute;
+            top: 3vh;
+            left: -3vh;
+            font-size: 2.2vh;
+            color: var(--white);    
+            background-color: var(--light-grey);
+            padding: 0.6vh 1.5vh;
+            border-radius: 0.6vh;
+            border: var(--border);
+            z-index: 1;
+        }
+
+        .pc {
+            background-color: #ff7f0f;
+            border-color: #d56f0f;
+        }
+
+        .xbox {
+            background-color: #46d671;
+            border-color: #38af5c;
+        }
+
+        .ps4 {
+            background-color: #4f9bff;
+            border-color: #3a7fc2;
+        }
+
         picture {
-            position: relative;
             height: 71.4vh;
             width: 100%;
             display: flex;
@@ -34,33 +62,6 @@
                     transform: scale(1.04);
                     // box-shadow: 0 0 10vh var(--black);
                 }
-            }
-
-            .type {
-                position: absolute;
-                top: 3vh;
-                left: 3vh;
-                font-size: 2.2vh;
-                color: var(--white);    
-                background-color: var(--light-grey);
-                padding: 0.6vh 1.5vh;
-                border-radius: 0.6vh;
-                border: var(--border);
-            }
-
-            .pc {
-                background-color: #ff7f0f;
-                border-color: #d56f0f;
-            }
-
-            .xbox {
-                background-color: #46d671;
-                border-color: #38af5c;
-            }
-
-            .ps4 {
-                background-color: #4f9bff;
-                border-color: #3a7fc2;
             }
 
             .gameInfo {
@@ -119,20 +120,54 @@
                     font-size: 1.4vh;
                     margin-top: 1vh;
                 }
-    
-                .addToCart {
-                    height: 5vh;
+
+                .buttons {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     width: 100%;
-                    color: var(--white);
-                    font-size: 1.6vh;
-                    background-color: var(--blue);
-                    border: 0.3vh solid var(--border-blue);
-                    border-radius: 1vh;
-                    transition: all 0.3s ease;
-                    cursor: pointer;
-    
-                    &:hover {
-                        background-color: var(--border-blue);
+                    gap: 1vh;
+
+                    a {
+                        height: 5vh;
+                        width: 100%;
+
+                        .buyNow {
+                            height: 100%;
+                            width: 100%;
+                            color: var(--white);
+                            font-size: 1.6vh;
+                            background-color: var(--blue);
+                            border: 0.3vh solid var(--border-blue);
+                            border-radius: 1vh;
+                            transition: all 0.3s ease;
+                            cursor: pointer;
+            
+                            &:hover {
+                                background-color: var(--border-blue);
+                            }
+                        }
+                    }
+
+                    .addToCart {
+                        height: 5vh;
+                        aspect-ratio: 1/1;
+                        color: var(--white);
+                        font-size: 1.6vh;
+                        background-color: var(--light-black);
+                        background-image: url("../../assets/icon/caddie.svg");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 2vh;
+                        border: var(--border);
+                        border-radius: 1vh;
+                        transition: all 0.3s ease;
+                        cursor: pointer;
+        
+                        &:hover {
+                            background-color: var(--blue);
+                            border-color: var(--blue);
+                        }
                     }
                 }
             }
@@ -151,10 +186,6 @@
                 font-weight: bold;
                 line-height: 1;
                 margin-bottom: 0.5vh;
-            }
-
-            .titleCommentary {
-                margin-bottom: 1.2vh;
             }
 
             .content {
@@ -179,6 +210,7 @@
                     border: var(--border);
                     border-radius: 1vh;
                     background-color: var(--light-grey);
+                    margin-top: 0.8vh;
                     
                     .userName {
                         color: var(--blue);
@@ -188,6 +220,13 @@
                     .commentaryContent {
                         font-weight: 300;
                     }
+                }
+
+                .emptyCommentary {
+                    color: var(--grey);
+                    font-size: 1.6vh;
+                    font-weight: 300;
+                
                 }
             }
         }

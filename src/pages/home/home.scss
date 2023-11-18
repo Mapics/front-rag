@@ -1,7 +1,5 @@
 .home {
-    display: flex;
-    justify-content: center;
-    padding: 3vh;
+    padding: 3vh 7vh;
     min-height: 90vh;
     width: 100%;
 
@@ -17,41 +15,10 @@
             outline: none;
             border-radius: 1vh;
             border: var(--border);
-            margin-bottom: 2vh;
             transition: all 0.3s ease;
         
             &:focus {
                 border-color: var(--grey);
-            }
-        }
-
-        .buttonsFilter {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            gap: 1vh;
-            
-            .filterButton {
-                color: var(--white);
-                background-color: var(--dark-black);
-                border: var(--border);
-                border-radius: 1vh;
-                padding: 0.8vh 2vh;
-                font-size: 1.8vh;
-                cursor: pointer;
-                outline: none;
-                transition: all 0.3s ease;
-            }
-
-            .active {
-                background-color: var(--blue);
-                border-color: var(--border-blue);
-                border-radius: 1vh;
-                padding: 0.8vh 2vh;
-                font-size: 1.8vh;
-                cursor: pointer;
-                outline: none;
-                transition: all 0.3s ease;
             }
         }
     }
