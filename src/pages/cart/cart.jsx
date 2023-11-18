@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./cart.scss";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Récupérer le panier depuis le localStorage
@@ -45,7 +47,7 @@ export default function Cart() {
   };
 
   const buyCart = () => {
-    alert("Merci pour votre achat !");
+    navigate("/");
     localStorage.removeItem("cart");
     setCartItems([]);
   };
