@@ -59,10 +59,15 @@ export default function Cart() {
             // Vérifier si l'ID utilisateur existe
             if (userId) {
                 // Ajouter l'userId à chaque objet du panier
-                const cartItemsWithUserId = cartItems.map(item => ({ id: item.id, userId, dateStart: item.dateStart, dateEnd: item.dateEnd }));
-
+                const cartItemsWithUserId = cartItems.map(item => ({ 
+                  id: item.id, 
+                  userId, dateStart: item.dateStart, 
+                  dateEnd: item.dateEnd 
+                }));
+                
+                console.log("cartItemsWithUserId", cartItemsWithUserId);
                 // Envoyer une requête au serveur pour ajouter les jeux à la base de données
-                const response = await fetch(`http://localhost:8000/location`, {
+                const response = await fetch(`http://localhost:8000/location/${userId}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
