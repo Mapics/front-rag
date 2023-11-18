@@ -37,7 +37,7 @@ export default function Cart() {
                   <img src={item.images} alt={item.titre} />
                   <div className="cartProductInfo">
                     <h5 className="cartProductName">{item.titre}</h5>
-                    <p className="cartProductPrice">{item.prix}/jour</p>
+                    <p className="cartProductPrice">{item.prix}€/jour</p>
                     <p className="date">Date de début : {item.dateStart}</p>
                     <p className="date">Date de fin : {item.dateEnd}</p>
                   </div>

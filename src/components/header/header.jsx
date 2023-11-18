@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <header>
       <Link className="logo" to="/">
-        RAG.com
+        RAG<span>.com</span>
       </Link>
       <nav>
         <ul>

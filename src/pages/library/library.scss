@@ -6,7 +6,46 @@
     .titleLibrary {
         color: var(--white);
         font-size: 3vh;
-        margin-bottom: 2vh;
+        margin: 0 0 1vh 1vh;
+    }
+
+    .gameList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1vh;
+
+        .formCommentary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--dark-black);
+            margin: 0 1vh;
+            border: var(--border);
+            border-radius: 1vh;
+            padding: 3vh;
+            gap: 1vh;
+        }
+
+        textarea {
+            padding: 1vh;
+            height: 5vh;
+            width: 50%;
+            resize: none;
+        } 
+
+        input {
+            height: 5vh;
+            aspect-ratio: 1/1;
+            background-color: var(--dark-black);
+            border-radius: 1vh;
+            border: var(--border);
+            outline: none;
+            transition: all 0.3s ease;
+
+            &:focus {
+                border-color: var(--grey);
+            }
+        }
     }
 
     .gameInfo {
