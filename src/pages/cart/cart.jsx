@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./cart.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -46,11 +46,54 @@ export default function Cart() {
       .toFixed(2);
   };
 
-  const buyCart = () => {
-    navigate("/");
-    localStorage.removeItem("cart");
-    setCartItems([]);
-  };
+  const buyCart = async () => {
+    try {
+        // Récupérer les jeux du panier depuis le stockage local
+        const cartItems = JSON.parse(localStorage.getItem("cart"));
+
+        // Vérifier si le panier n'est pas vide
+        if (cartItems && cartItems.length > 0) {
+            // Récupérer l'ID utilisateur depuis le localStorage
+            const userId = localStorage.getItem("userId");
+
+            // Vérifier si l'ID utilisateur existe
+            if (userId) {
+                // Ajouter l'userId à chaque objet du panier
+                const cartItemsWithUserId = cartItems.map(item => ({ id: item.id, userId, dateStart: item.dateStart, dateEnd: item.dateEnd }));
+
+                // Envoyer une requête au serveur pour ajouter les jeux à la base de données
+                const response = await fetch(`http://localhost:8000/location`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(cartItemsWithUserId),
+                });
+
+                if (response.ok) {
+                    // Si l'ajout à la base de données est réussi
+                    alert("Merci pour votre achat!");
+                    
+                    // Nettoyer le panier local
+                    localStorage.removeItem("cart");
+                    setCartItems([]);
+                } else {
+                    console.error("Erreur lors de l'ajout des jeux à la base de données");
+                    alert("Erreur lors de l'achat. Veuillez réessayer plus tard.");
+                }
+            } else {
+                // Si l'ID utilisateur n'existe pas
+                console.error("ID utilisateur non trouvé");
+                alert("Erreur lors de l'achat. Veuillez vous connecter.");
+            }
+        } else {
+            alert("Votre panier est vide. Ajoutez des jeux avant d'acheter.");
+        }
+    } catch (error) {
+        console.error("Erreur inattendue lors de l'achat :", error);
+        alert("Erreur inattendue lors de l'achat. Veuillez réessayer plus tard.");
+    }
+};
 
   return (
     <main className="cart">

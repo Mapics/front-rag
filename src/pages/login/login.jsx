@@ -8,6 +8,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const token = Cookies.get('token');
   const [incorrect, setIncorrect] = useState(null); // New state variable for error
   const navigate = useNavigate();
 
@@ -30,20 +31,25 @@ export default function Login() {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        const { userId } = data;
+
+        // Stocker l'ID utilisateur dans le localStorage
+        localStorage.setItem("userId", userId);
+
         console.log("Connexion réussie");
-        Cookies.set('token', 'clé_secrète', { sameSite: 'Strict' });
         navigate("/");
         window.location.reload();
       } else {
-        console.error("Erreur lors de la connexion");
-        setIncorrect("Email ou mot de passe incorrect."); // Set error message
+          console.error("Erreur lors de la connexion");
+          setIncorrect("Email ou mot de passe incorrect."); // Set error message
       }
     } catch (err) {
-      console.error("Erreur inattendue", err);
-      setIncorrect("Une erreur inattendue s'est produite."); // Set error message
+        console.error("Erreur inattendue", err);
+        setIncorrect("Une erreur inattendue s'est produite."); // Set error message
     } finally {
-      setEmail("");
-      setPassword("");
+        setEmail("");
+        setPassword("");
     }
   };
 

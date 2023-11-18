@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./library.scss";
-import Product from "../../components/product/product"; // Assure-toi d'ajuster le chemin d'importation en fonction de ta structure de fichiers
+import Product from "../../components/product/product";
 
 export default function Library() {
   const [userGamesInLocation, setUserGamesInLocation] = useState([]);
@@ -9,7 +9,7 @@ export default function Library() {
   useEffect(() => {
     const fetchUserGamesInLocation = async () => {
       try {
-        const userId = "1"; // verifier ici l'id du user actuellement connecte
+        const userId = localStorage.getItem("userId");
         const response = await fetch(
           `http://localhost:8000/user/${userId}/gamesInLocation`
         );
@@ -28,81 +28,42 @@ export default function Library() {
     fetchUserGamesInLocation();
   }, []);
 
+  const handleCommentSubmit = async (gameId, commentary) => {
+    try {
+      const userId = localStorage.getItem("userId");
+
+      const response = await fetch(`http://localhost:8000/game/${gameId}/comment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          commentary,
+        }),
+      });
+
+      if (response.ok) {
+        // Ajouter la logique nécessaire après la soumission du commentaire
+        console.log("Commentaire soumis avec succès");
+      } else {
+        console.error("Erreur lors de la soumission du commentaire");
+      }
+    } catch (error) {
+      console.error("Erreur inattendue lors de la soumission du commentaire :", error);
+    }
+  };
+
   return (
     <main className="library">
-      <h2 className="titleLibrary">Mes jeux en location</h2>
-      <div className="games">
-        {/* A SUPPRIMER */}
-        <div className="gameList">
-          <div className="gameContainer">
-            <Product
-              key={2}
-              id={2}
-              image={
-                "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f"
-              }
-              titre={"The Witcher 3"}
-              description={"Un jeu de rôle à la troisième personne"}
-              plateforme={"PS4"}
-              price={"4.99"}
-            />
-
-            <form className="formCommentary">
-              <textarea
-                className="commentaire"
-                id="commentaire"
-                name="commentaire"
-                placeholder="Un avis sur ce jeu ?"
-                rows="4"
-                cols="50"
-              ></textarea>
-              <input
-                className="submitComment"
-                type="submit"
-                value=""
-              ></input>
-            </form>
-          </div>
-          <div className="gameContainer">
-            <Product
-              key={2}
-              id={2}
-              image={
-                "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f"
-              }
-              titre={"The Witcher 3"}
-              description={"Un jeu de rôle à la troisième personne"}
-              plateforme={"PS4"}
-              price={"4.99"}
-            />
-
-            <form className="formCommentary">
-              <textarea
-                className="commentaire"
-                id="commentaire"
-                name="commentaire"
-                placeholder="Un avis sur ce jeu ?"
-                rows="4"
-                cols="50"
-              ></textarea>
-              <input
-                className="submitComment"
-                type="submit"
-                value=""
-              ></input>
-            </form>
-          </div>
-          
-        </div>  
-        {/* A SUPPRIMER */}
-
-        {loading ? (
-          <p>Chargement...</p>
-        ) : userGamesInLocation.length > 0 ? (
-          <div className="productList">
-            {userGamesInLocation.map((article) => (
+      {/* ... (le reste du code reste inchangé) */}
+      {loading ? (
+        <p>Chargement...</p>
+      ) : userGamesInLocation.length > 0 ? (
+        <div className="productList">
+          {userGamesInLocation.map((article) => (
+            <div key={article.id} className="gameContainer">
               <Product
-                key={article.id}
                 id={article.id}
                 image={article.images}
                 titre={article.titre}
@@ -110,12 +71,36 @@ export default function Library() {
                 plateforme={article.plateforme}
                 price={article.prix}
               />
-            ))}
-          </div>
-        ) : (
-          <p>Aucun jeu en location pour le moment.</p>
-        )}
-      </div>
+
+              <form
+                className="formCommentary"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const commentary = e.target.commentaire.value;
+                  handleCommentSubmit(article.id, commentary);
+                }}
+              >
+                <textarea
+                  className="commentaire"
+                  id="commentaire"
+                  name="commentaire"
+                  placeholder="Un avis sur ce jeu ?"
+                  rows="4"
+                  cols="50"
+                ></textarea>
+                <input
+                  className="submitComment"
+                  type="submit"
+                  value="Soumettre le commentaire"
+                />
+              </form>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Aucun jeu en location pour le moment.</p>
+      )}
+      {/* ... (le reste du code reste inchangé) */}
     </main>
   );
 }
