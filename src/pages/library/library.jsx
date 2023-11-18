@@ -98,7 +98,7 @@ export default function Library() {
           ))}
         </div>
       ) : (
-        <p>Aucun jeu en location pour le moment.</p>
+        <p className="noRent">Aucun jeu en location pour le moment.</p>
       )}
       {/* ... (le reste du code reste inchangé) */}
     </main>
