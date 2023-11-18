@@ -1,7 +1,7 @@
 .game {
     display: flex;
     justify-content: center;
-    padding: 6vh;
+    padding: 6vh; 
     min-height: 90vh;
     width: 100%;
 
@@ -68,7 +68,8 @@
 
             .gameInfo {
                 position: absolute;
-                right: 10vh;
+                right: 5vh;
+                bottom: 5vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
