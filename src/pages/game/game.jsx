@@ -38,9 +38,13 @@ export default function Game() {
             const userResponse = await axios.get(
               `http://localhost:8000/user/${comment.id_user}/username`
             );
+    
+            // Vérifiez si userResponse.data[0] existe avant de l'utiliser
+            const username = userResponse.data[0]?.username || 'Utilisateur inconnu';
+    
             return {
               ...comment,
-              username: userResponse.data[0].username,
+              username: username,
             };
           })
         );
@@ -55,6 +59,7 @@ export default function Game() {
         setLoading(false);
       }
     };
+    
 
     fetchGameDetails();
     fetchGamesComments();
@@ -160,14 +165,16 @@ export default function Game() {
           <div className="commentaryContainer">
             <h2 className="titleCommentary">Commentaires</h2>
             <div className="descriptionContainer">
-              {loading ? (
+            {loading ? (
                 <p>Chargement...</p>
               ) : (
                 commentary.map((comment) => (
-                  <div className="commentary" key={comment.id}>
-                    <p className="userName">{`${comment.username}`}</p>
-                    <p className="commentaryContent">{comment.commentaire}</p>
-                  </div>
+                  comment.commentaire && (
+                    <div className="commentary" key={comment.id}>
+                      <p className="userName">{`${comment.username}`}</p>
+                      <p className="commentaryContent">{comment.commentaire}</p>
+                    </div>
+                  )
                 ))
               )}
 
