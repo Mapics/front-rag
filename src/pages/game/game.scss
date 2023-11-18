@@ -113,6 +113,12 @@
                         outline: 0.3vh solid var(--grey);
                     }
                 }
+
+                .errorDate {
+                    color: var(--red);
+                    font-size: 1.4vh;
+                    margin-top: 1vh;
+                }
     
                 .addToCart {
                     height: 5vh;

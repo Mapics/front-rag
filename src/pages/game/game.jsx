@@ -10,6 +10,7 @@ export default function Game() {
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
   const [endDate, setEndDate] = useState(getFormattedDate());
   const [addButton, setAddButton] = useState("Louer");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchGameDetails = async () => {
@@ -39,6 +40,21 @@ export default function Game() {
   }
 
   const addToCart = () => {
+    // Vérification de la validité des dates
+    const startDate = new Date(currentDate);
+    const endDateValue = new Date(endDate);
+
+    if (endDateValue <= startDate) {
+      // Afficher un message d'erreur
+      setErrorMessage("La date de fin doit être postérieure à la date de début");
+      return;
+    }
+
+    // Réinitialiser le message d'erreur
+    setErrorMessage("");
+
+    // Le reste du code pour ajouter l'élément au panier
+
     const cartItem = {
       id: gameDetails.id,
       titre: gameDetails.titre,
@@ -98,6 +114,7 @@ export default function Game() {
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                 />
+                {errorMessage && <p className="errorDate">{errorMessage}</p>}
               </div>
               <button
                 className="addToCart"
@@ -112,25 +129,7 @@ export default function Game() {
             <h2 className="titleDescription">Description</h2>
             <p className="content">{gameDetails.description}</p>
           </div>
-          <div className="commentaryContainer">
-            <h2 className="titleCommentary">Commentaires</h2>
-            <div className="descriptionContainer">
-
-              <div className="commentary">
-                <p className="userName">@pseudo</p>
-                <p className="commentaryContent">Très bon jeu, je ne regrette pas mon achat.</p>
-              </div>
-              <div className="commentary">
-                <p className="userName">@pseudo</p>
-                <p className="commentaryContent">Incroyable, je recommande !</p>
-              </div>
-              <div className="commentary">
-                <p className="userName">@pseudo</p>
-                <p className="commentaryContent">Super jeu, les graphismes sont magnifiques et l'histoire est prenante.</p>
-              </div>
-
-            </div>
-          </div>
+          {/* ... */}
         </div>
       ) : (
         <p>Aucun détail trouvé pour ce jeu.</p>
