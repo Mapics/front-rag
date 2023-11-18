@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./header.scss";
-
 import Cookies from "js-cookie";
 
 export default function Header() {
   const [isConnected, setIsConnected] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Vérification de la présence du cookie ici
+    // Vérification de la présence de l'ID utilisateur dans le localStorage
     console.log("connecté ?");
-    const userIsConnected = Cookies.get("token") !== undefined;
+    const userIsConnected = localStorage.getItem("userId") !== null;
     setIsConnected(userIsConnected);
   }, []);
+  
 
   const handleLogout = () => {
-    console.log("Deconnection");
-    Cookies.remove("token");
+    console.log("Déconnexion");
+  
+    // Supprimer l'ID utilisateur du localStorage
+    localStorage.removeItem("userId");
+  
     setIsConnected(false);
-    localStorage.clear();
+  
+    // Rediriger l'utilisateur vers la page de connexion, par exemple
+    navigate("/login");
   };
 
   return (
