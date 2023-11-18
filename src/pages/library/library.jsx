@@ -66,8 +66,8 @@ export default function Library() {
         <p>Chargement...</p>
       ) : userGamesInLocation.length > 0 ? (
         <div className="productList">
+          <div className="gameList">
           {userGamesInLocation.map((article) => (
-            <div className="gameList">
               <div key={article.id} className="gameContainer">
                 <Product
                   id={article.id}
@@ -97,8 +97,8 @@ export default function Library() {
                   <input className="submitComment" type="submit" value="" />
                 </form>
               </div>
-            </div>
           ))}
+          </div>
         </div>
       ) : (
         <p className="noRent">Aucun jeu en location pour le moment.</p>
