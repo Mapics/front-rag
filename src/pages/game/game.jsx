@@ -10,6 +10,7 @@ export default function Game() {
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
   const [endDate, setEndDate] = useState(getFormattedDate());
   const [addButton, setAddButton] = useState("Louer");
+  const [commentary, setCommentary] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -28,7 +29,29 @@ export default function Game() {
       }
     };
 
+    const fetchGamesComments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/location/comment/${id}`);
+        const commentData = await Promise.all(
+          response.data.map(async (comment) => {
+            const userResponse = await axios.get(`http://localhost:8000/user/${comment.id_user}/username`);
+            return {
+              ...comment,
+              username: userResponse.data[0].username,
+            };
+          })
+        );
+        setCommentary(commentData);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des commentaires du jeu :", error);
+        // Afficher un message à l'utilisateur en cas d'erreur
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchGameDetails();
+    fetchGamesComments();
   }, [id]);
 
   function getFormattedDate() {
@@ -87,7 +110,7 @@ export default function Game() {
         <div className="gameDetails">
           <picture>
             <img src={gameDetails.images} alt={gameDetails.titre} />
-            <p className={`type ${gameDetails.plateforme.toLowerCase()}`}>
+            <p className={`type ${gameDetails.plateforme}`}>
               {gameDetails.plateforme}
             </p>
             <div className="gameInfo">
@@ -129,7 +152,23 @@ export default function Game() {
             <h2 className="titleDescription">Description</h2>
             <p className="content">{gameDetails.description}</p>
           </div>
-          {/* ... */}
+          <div className="commentaryContainer">
+            <h2 className="titleCommentary">Commentaires</h2>
+            <div className="descriptionContainer">
+              {loading ? (
+                <p>Chargement...</p>
+              ) : (
+                commentary.map((comment) => (
+                  comment.commentaire && (
+                    <div className="commentary" key={comment.id}>
+                      <p className="userName">{`${comment.username}`}</p>
+                      <p className="commentaryContent">{comment.commentaire}</p>
+                    </div>
+                  )
+                ))
+              )}
+            </div>
+          </div>
         </div>
       ) : (
         <p>Aucun détail trouvé pour ce jeu.</p>
