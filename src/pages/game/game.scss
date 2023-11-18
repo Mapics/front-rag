@@ -132,7 +132,7 @@
             }
         }
 
-        .description, .commentary {
+        .description, .commentaryContainer {
             width: 100%;
             color: var(--white);
             background-color: var(--dark-black);
@@ -162,15 +162,26 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1vh;
-                
-                p {
+                font-size: 1.6vh;
+
+                .commentary {
+                    display: flex;
+                    align-items: center;
+                    gap: 1vh;
                     color: var(--grey);
-                    font-size: 1.6vh;
-                    font-weight: 300;
-                    padding: 1vh 2vh;
+                    padding: 1.5vh;
                     border: var(--border);
                     border-radius: 1vh;
                     background-color: var(--light-grey);
+                    
+                    .userName {
+                        color: var(--blue);
+                        font-weight: bold;
+                    }
+                    
+                    .commentaryContent {
+                        font-weight: 300;
+                    }
                 }
             }
         }

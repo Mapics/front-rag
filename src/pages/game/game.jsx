@@ -112,17 +112,23 @@ export default function Game() {
             <h2 className="titleDescription">Description</h2>
             <p className="content">{gameDetails.description}</p>
           </div>
-          <div className="commentary">
+          <div className="commentaryContainer">
             <h2 className="titleCommentary">Commentaires</h2>
             <div className="descriptionContainer">
-              <p>Très bon jeu, je ne regrette pas mon achat.</p>
-              <p>Je n'ai pas aimé ce jeu, je ne le recommande pas.</p>
-              <p>Incroyable ! Je recommande vivement ce jeu !</p>
-              <p>Très bon jeu, je ne regrette pas mon achat.</p>
-              <p>Incroyable ! Je recommande vivement ce jeu !</p>
-              <p>Très bon jeu, je ne regrette pas mon achat.</p>
-              <p>Très bon jeu, je ne regrette pas mon achat.</p>
-              <p>Je n'ai pas aimé ce jeu, je ne le recommande pas.</p>
+
+              <div className="commentary">
+                <p className="userName">@pseudo</p>
+                <p className="commentaryContent">Très bon jeu, je ne regrette pas mon achat.</p>
+              </div>
+              <div className="commentary">
+                <p className="userName">@pseudo</p>
+                <p className="commentaryContent">Incroyable, je recommande !</p>
+              </div>
+              <div className="commentary">
+                <p className="userName">@pseudo</p>
+                <p className="commentaryContent">Super jeu, les graphismes sont magnifiques et l'histoire est prenante.</p>
+              </div>
+
             </div>
           </div>
         </div>
