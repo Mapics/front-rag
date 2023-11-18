@@ -22,6 +22,10 @@ export default function Cart() {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + parseFloat(item.prix), 0).toFixed(2);
+  };
+
   return (
     <main className="cart">
       <div className="cartProducts">
@@ -54,12 +58,23 @@ export default function Cart() {
       <div className="cartTotal">
         <h2 className="cartTotalTitle">Total</h2>
         <div className="cartTotalContainer">
-          <p className="cartTotalPrice">
-            {cartItems.reduce((acc, item) => acc + item.prix, 0)}€
-          </p>
-          <button>
-            <span>Payer</span>
-          </button>
+          <div className="cartTotalList">
+            {cartItems.map((item, index) => (
+              <p className="cartTotalProduct">
+                <p className="title">{item.titre}</p>
+                <p className="price" key={index}>
+                  {item.prix}€
+                </p>
+              </p>
+            ))}
+          </div>
+          <div className="cartTotalPrice">
+            <div className="cartTotalPriceContainer">
+              <p className="titleTotal">Total</p>
+              <p className="totalPrice">{`${calculateTotal()}€`}</p>
+            </div>
+            <button className="buy">Payer</button>
+          </div>
         </div>
       </div>
     </main>

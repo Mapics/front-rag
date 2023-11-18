@@ -10,11 +10,89 @@
         width: 25%;
         
         .cartTotalContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
             height: 70vh;
             background-color: var(--dark-black);
             border: var(--border);
             border-radius: 1vh;
             padding: 4vh;
+
+            .cartTotalList {
+                width: 100%;
+                
+                .cartTotalProduct {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    color: var(--white);
+                    font-size: 2vh;
+                    gap: 2vh;
+                    margin-bottom: 1.5vh;
+    
+                    .title {
+                        font-size: 2vh;
+                        font-weight: 500;
+                    }
+                    
+                    .price {
+                        font-size: 1.8vh;
+                        font-weight: 500;
+                        color: var(--grey);
+                    }
+                }
+            }
+
+            .cartTotalPrice {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                gap: 2vh;
+                width: 100%;
+                color: var(--white);
+
+                .cartTotalPriceContainer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    color: var(--white);
+                    font-size: 2vh;
+                    gap: 2vh;
+
+                    .title {
+                        font-size: 2vh;
+                        font-weight: 500;
+                    }
+
+                    .price {
+                        font-size: 1.8vh;
+                        font-weight: 500;
+                        color: var(--grey);
+                    }
+                }
+
+                .buy {
+                    height: 6vh;
+                    width: 100%;
+                    border-radius: 1vh;
+                    background-color: var(--blue);
+                    border: 0.3vh solid var(--border-blue);
+                    color: var(--white);
+                    font-size: 2vh;
+                    font-weight: 600;
+                    transition: background-color 0.3s ease;
+                    cursor: pointer;
+        
+                    &:hover {
+                        background-color: var(--border-blue);
+                    }
+                }
+            }
         }
 
         .cartTotalTitle {
@@ -22,23 +100,6 @@
             font-size: 3vh;
             font-weight: 700;
             margin-bottom: 1vh;
-        }
-
-        button {
-            height: 7vh;
-            width: 100%;
-            border-radius: 1vh;
-            background-color: var(--blue);
-            border: 0.3vh solid var(--border-blue);
-            color: var(--white);
-            font-size: 2vh;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-
-            &:hover {
-                background-color: var(--border-blue);
-            }
         }
     }
 
