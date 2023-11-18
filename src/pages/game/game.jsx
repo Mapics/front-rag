@@ -8,6 +8,7 @@ export default function Game() {
   const [gameDetails, setGameDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
+  const [endDate, setEndDate] = useState(getFormattedDate());
   const [addButton, setAddButton] = useState("Louer");
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function Game() {
       images: gameDetails.images,
       prix: gameDetails.prix,
       dateStart: currentDate,
-      // dateEnd: /* récupérer la date de fin ici */,
+      dateEnd: endDate,
     };
 
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -94,7 +95,8 @@ export default function Game() {
                   name="dateEnd"
                   id="dateEnd"
                   placeholder="Entrez la date de fin de location"
-                  /* Ajouter la gestion de la date de fin ici */
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
                 />
               </div>
               <button

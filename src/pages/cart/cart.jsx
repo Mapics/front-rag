@@ -28,27 +28,28 @@ export default function Cart() {
         <h2 className="titleCart">Panier</h2>
         <div className="cartScroll">
           <div className="cartContainer">
-          {cartItems.map((item, index) => (
-            <div className="cartProduct" key={index}>
-              <div className="cartProductInfos">
-                <img src={item.images} alt={item.titre} />
-                <div className="cartProductInfo">
-                  <h5 className="cartProductName">{item.titre}</h5>
-                  <p className="cartProductPrice">{item.prix}/jour</p>
-                  <p className="date">Date de début : {item.dateStart}</p>
-                  <p className="date">Date de fin : {item.dateEnd}</p>
+            {cartItems.length === 0 && (
+              <p className="emptyCart">Votre panier est vide.</p>
+            )}
+            {cartItems.map((item, index) => (
+              <div className="cartProduct" key={index}>
+                <div className="cartProductInfos">
+                  <img src={item.images} alt={item.titre} />
+                  <div className="cartProductInfo">
+                    <h5 className="cartProductName">{item.titre}</h5>
+                    <p className="cartProductPrice">{item.prix}/jour</p>
+                    <p className="date">Date de début : {item.dateStart}</p>
+                    <p className="date">Date de fin : {item.dateEnd}</p>
+                  </div>
                 </div>
+                <button
+                  className="delete"
+                  onClick={() => removeFromCart(index)}
+                ></button>
               </div>
-              <button className="delete" onClick={() => removeFromCart(index)}>
-                Supprimer
-              </button>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
-        {cartItems.length === 0 && (
-          <p className="emptyCart">Votre panier est vide.</p>
-        )}
       </div>
       <div className="cartTotal">
         <h2 className="cartTotalTitle">Total</h2>

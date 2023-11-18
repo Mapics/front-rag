@@ -26,7 +26,7 @@ export default function Library() {
   return (
     <main className="library">
       <h2 className="titleLibrary">Mes jeux en location</h2>
-      <div className="comment">
+      <div className="commentary">
         {/* Affiche les jeux en location */}
         {loading ? (
           <p>Chargement...</p>
@@ -34,13 +34,13 @@ export default function Library() {
           <div className="productList">
             {userGamesInLocation.map((article) => (
               <Product
-                // key={article.id}
-                // id={article.id}
-                // image={article.images}
-                // titre={article.titre}
-                // description={article.description}
-                // plateforme={article.plateforme}
-                // price={article.prix}
+                key={article.id}
+                id={article.id}
+                image={article.images}
+                titre={article.titre}
+                description={article.description}
+                plateforme={article.plateforme}
+                price={article.prix}
               />
             ))}
           </div>
