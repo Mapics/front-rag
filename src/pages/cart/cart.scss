@@ -132,8 +132,10 @@
         
                     .cartProductInfos {
                         display: flex;
+                        justify-content: space-between;
                         align-items: center;
                         height: 100%;
+                        width: 100%;
                         gap: 2vh;
         
                         img {
@@ -144,25 +146,36 @@
             
                         .cartProductInfo {
                             display: flex;
+                            justify-content: space-between;
                             align-items: center;
-                            gap: 1vh;
-        
-                            .cartProductName {
-                                color: var(--white);
-                                font-size: 2vh;
-                                font-weight: 700;
+                            width: 100%;
+                            gap: 4vh;
+
+                            .cartProductInfoContainer {
+                                .cartProductName {
+                                    color: var(--white);
+                                    font-size: 2vh;
+                                    font-weight: 700;
+                                }
+                
+                                .cartProductPrice {
+                                    color: var(--white);
+                                    font-size: 1.6vh;
+                                    font-weight: 500;
+                                }
                             }
-            
-                            .cartProductPrice {
-                                color: var(--white);
-                                font-size: 1.6vh;
-                                font-weight: 500;
-                            }
-        
-                            .date {
-                                color: var(--white);
-                                font-size: 1.6vh;
-                                font-weight: 400;
+
+                            .cartProductDateContainer {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                gap: 4vh;
+                                
+                                .date {
+                                    color: var(--white);
+                                    font-size: 1.6vh;
+                                    font-weight: 400;
+                                }
                             }
                         }
                     }
@@ -177,6 +190,7 @@
                         background-repeat: no-repeat;
                         background-position: center;
                         margin-right: 1vh;
+                        margin: 0 1vh 0 3vh;
                         cursor: pointer;
 
                         &:hover {

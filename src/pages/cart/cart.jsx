@@ -26,18 +26,22 @@ export default function Cart() {
     // Calculer le nombre de jours entre la date de début et la date de fin
     const startDate = new Date(item.dateStart);
     const endDate = new Date(item.dateEnd);
-    const numberOfDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+    const numberOfDays = Math.ceil(
+      (endDate - startDate) / (1000 * 60 * 60 * 24)
+    );
 
     // Calculer le coût total pour cet article
     const itemTotal = parseFloat(item.prix) * numberOfDays;
-    
+
     // Retourner le coût total avec le format fixé à 2 décimales
     return itemTotal.toFixed(2);
   };
 
   const calculateTotal = () => {
     // Calculer le total général en additionnant le coût total de chaque article
-    return cartItems.reduce((total, item) => total + parseFloat(calculateItemTotal(item)), 0).toFixed(2);
+    return cartItems
+      .reduce((total, item) => total + parseFloat(calculateItemTotal(item)), 0)
+      .toFixed(2);
   };
 
   const buyCart = () => {
@@ -60,10 +64,14 @@ export default function Cart() {
                 <div className="cartProductInfos">
                   <img src={item.images} alt={item.titre} />
                   <div className="cartProductInfo">
-                    <h5 className="cartProductName">{item.titre}</h5>
-                    <p className="cartProductPrice">{item.prix}€/jour</p>
-                    <p className="date">Date de début : {item.dateStart}</p>
-                    <p className="date">Date de fin : {item.dateEnd}</p>
+                    <div className="cartProductInfoContainer">
+                      <h5 className="cartProductName">{item.titre}</h5>
+                      <p className="cartProductPrice">{item.prix}€/jour</p>
+                    </div>
+                    <div className="cartProductDateContainer">
+                      <p className="date">Date de début : {item.dateStart}</p>
+                      <p className="date">Date de fin : {item.dateEnd}</p>
+                    </div>
                   </div>
                 </div>
                 <button
@@ -91,7 +99,9 @@ export default function Cart() {
               <p className="titleTotal">Total</p>
               <p className="totalPrice">{`${calculateTotal()}€`}</p>
             </div>
-            <button className="buy" onClick={buyCart}>Payer</button>
+            <button className="buy" onClick={buyCart}>
+              Payer
+            </button>
           </div>
         </div>
       </div>
