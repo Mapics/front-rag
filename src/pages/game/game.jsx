@@ -4,31 +4,31 @@ import { Link, useParams } from "react-router-dom";
 import "./game.scss"; // Assurez-vous d'ajuster le chemin d'importation en fonction de votre structure de fichiers
 
 export default function Game() {
-  const { id } = useParams();
-  const [gameDetails, setGameDetails] = useState(null);
+  const { id } = useParams(); // Récupération du paramètre id du jeu dans l'URL
+  const [gameDetails, setGameDetails] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(getFormattedDate());
   const [endDate, setEndDate] = useState(getFormattedDate());
   const [commentary, setCommentary] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
+  useEffect(() => { // Effectue une requête pour récupérer les informations du jeu
     const fetchGameDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/jeux/${id}`);
-        setGameDetails(response.data[0]);
-      } catch (error) {
+        const response = await axios.get(`http://localhost:8000/jeux/${id}`); // Tant que la requête n'est pas terminée, on affiche un message de chargement
+        setGameDetails(response.data[0]); // Une fois la requête terminée, on met à jour le state avec les informations récupérées
+      } catch (error) { // En cas d'erreur, on affiche un message à l'utilisateur
         console.error(
           "Erreur lors de la récupération des détails du jeu :",
           error
         );
         // Afficher un message à l'utilisateur en cas d'erreur
       } finally {
-        setLoading(false);
+        setLoading(false); // Dans tous les cas, on passe loading à false pour indiquer que le chargement est terminé
       }
     };
 
-    const fetchGamesComments = async () => {
+    const fetchGamesComments = async () => { // Effectue une requête pour récupérer les commentaires du jeu
       try {
         const response = await axios.get(
           `http://localhost:8000/location/comment/${id}`
@@ -60,7 +60,7 @@ export default function Game() {
     fetchGamesComments();
   }, [id]);
 
-  function getFormattedDate() {
+  function getFormattedDate() { // Récupère la date du jour au format YYYY-MM-DD
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
@@ -70,21 +70,19 @@ export default function Game() {
 
   const addToCart = () => {
     // Vérification de la validité des dates
-    const startDate = new Date(currentDate);
+    const startDate = new Date(currentDate); // Création d'un objet Date à partir de la date de début
     const endDateValue = new Date(endDate);
 
-    if (endDateValue <= startDate) {
-      // Afficher un message d'erreur
+    if (endDateValue <= startDate) { // Si la date de fin est inférieure ou égale à la date de début, on affiche un message d'erreur
       setErrorMessage(
         "La date de fin doit être postérieure à la date de début"
       );
       return;
     }
 
-    // Réinitialiser le message d'erreur
-    setErrorMessage("");
+    setErrorMessage(""); // On supprime le message d'erreur s'il y en avait un
 
-    const cartItem = {
+    const cartItem = { // Création d'une variable cartItem qui contient les informations du jeu et les dates de début et de fin de location
       id: gameDetails.id,
       titre: gameDetails.titre,
       images: gameDetails.images,
@@ -93,21 +91,20 @@ export default function Game() {
       dateEnd: endDate,
     };
 
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = [...existingCart, cartItem];
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || []; // Si le panier existe déjà, on le récupère, sinon on crée un tableau vide
+    const updatedCart = [...existingCart, cartItem]; // On insert les informations du jeu dans le panier
 
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    console.log("Ajouté au panier");
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // On met à jour le panier dans le localStorage
   };
 
   return (
     <main className="game">
-      {loading ? (
+      {loading ? ( // Tant que la requête n'est pas terminée, on affiche un message de chargement
         <p>Chargement...</p>
       ) : gameDetails ? (
         <div className="gameDetails">
-          <p className={`type ${gameDetails.plateforme.toLowerCase()}`}>
-            {gameDetails.plateforme}
+          <p className={`type ${gameDetails.plateforme.toLowerCase()}`}> {/* On ajoute une classe CSS en fonction de la plateforme du jeu */}
+            {gameDetails.plateforme} 
           </p>
           <picture>
             <img src={gameDetails.images} alt={gameDetails.titre} />

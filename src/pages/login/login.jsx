@@ -84,7 +84,7 @@ export default function Login() {
           </div>
           <button type="submit">Se connecter</button>
         </form>
-        {incorrect && <div className="incorrect">{incorrect}</div>} {/* Display error message */}
+        {incorrect && <div className="incorrect">{incorrect}</div>} {/* On affiche un message d'erreur si le login a échoué */}
         <div className="notHaveAccount">
           <p>Vous n'avez pas de compte ?</p>
           <Link to="/register">Inscrivez-vous</Link>
